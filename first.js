@@ -16,6 +16,7 @@ console.log("Outside Function: " + b);
 //console.log(i);
 //var i=100;
 
+
 function callfunc(){
     console.log(arguments);
 }

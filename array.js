@@ -21,6 +21,8 @@ console.log("New Array : "+newarr);
 // Spread operator - Expanding an array into individual elements
 // Rest operator - Collecting multiple elements into an array
 
+
+// Spread operator - Expanding an array into individual elements
 let students = [
     {name:"John", marks:20},
     {name:"Jane", marks:22},
@@ -34,7 +36,7 @@ console.log("------------------------");
 console.log("New Students : ",newstudents);
 
 
-// Rest operator to combine two arrays into one
+// Rest operator - Collecting multiple elements into an array
 let num1=[1,2,3];
 let num2=[4,5,6];
 let combined = [...num1,...num2]; 
@@ -61,6 +63,7 @@ function add(a,b,...rest){
 }
 console.log("------------------------");
 console.log("Final Sum : "+add(1,2,3,4,5));
+
 // String interpolation to create a formatted string with the result of the add function
 console.log(`Result = ${add(1,2,3,4,5)} `);
 
