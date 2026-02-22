@@ -13,5 +13,11 @@ if(true){
 console.log("Outside Function: " + a);
 console.log("Outside Function: " + b);
 
-console.log(i);
-var i=100;
+//console.log(i);
+//var i=100;
+
+function callfunc(){
+    console.log(arguments);
+}
+
+callfunc(1,2,3,4,5);

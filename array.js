@@ -18,7 +18,8 @@ console.log("------------------------");
 console.log("New Array : "+newarr);
 
 
-// Spread operator to copy existing properties and add new property 'remarks'
+// Spread operator - Expanding an array into individual elements
+// Rest operator - Collecting multiple elements into an array
 
 let students = [
     {name:"John", marks:20},

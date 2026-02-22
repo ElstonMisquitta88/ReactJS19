@@ -1,10 +1,24 @@
 <html>
+
 <head>
     <title>My Web Page</title>
-<script src="first.js"></script>
+
+    <script type="module">
+        import Employee from './employee.js';
+        let obj = new Employee(23, "Elston Doe");
+        obj.showEmployeeInfo();
+        document.getElementById("clickButton").addEventListener("click", (event) => {
+            event.target.value="Clicked!";
+            event.target.style.backgroundColor="lightblue";
+        });
+    </script>
+
 </head>
-    <body>
-        <h1>Welcome to My Web Page</h1>
-        <p>This is a simple web page created as an example.</p>
-    </body>
+
+<body>
+    <h1>Welcome to My Web Page</h1>
+    <p>This is a simple web page created as an example.</p>
+    <input type="button" id="clickButton" value="Click Me">
+</body>
+
 </html>
