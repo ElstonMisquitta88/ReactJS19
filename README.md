@@ -1,9 +1,3 @@
----Questpond ReactJs---
---Lab requirement--
---Node Js
---VSCode
---Visual Sudio Community Edition 2022
-
 ### Day1
 
 Javascript is a dynamic scripting language
