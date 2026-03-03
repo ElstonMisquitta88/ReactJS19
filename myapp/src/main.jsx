@@ -6,6 +6,5 @@ import Apppnl_obj from './App_pnl.jsx'
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <App />
-    <Apppnl_obj />
   </StrictMode>,
 )

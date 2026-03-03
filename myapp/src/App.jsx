@@ -1,3 +1,5 @@
+import Databinding from "./Databinding";
+
 // This is a component file which is used to create a component in react
 
 function App() {
@@ -6,6 +8,7 @@ function App() {
     <h1>Hello World </h1>
     <h3>Welcome to my React App</h3>
     <h4>Hello Elston ! This is my First React App </h4>
+   <Databinding />
    </>
   )
 }
