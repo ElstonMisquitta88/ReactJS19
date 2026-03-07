@@ -1,12 +1,40 @@
+import { useEffect, useState } from "react";
+
+function GetRandomNumber() {
+    return Math.floor(Math.random() * 100) + 1;
+}
+
+
+
+
 function DiscountOffer() {
-  return (<>
-   
-   <div className="discount-offer">
-    </div>
-   
-   <span></span>
-   
-   </>)
+    const [offerPrice, setOfferPrice] = useState(GetRandomNumber());
+    const [isChecked, setIsChecked] = useState(false);
+
+    function HandleCheck(e) {
+        setIsChecked(e);
+    }
+
+    useEffect(() => {
+        if (isChecked) {
+            setInterval(() => {
+                setOfferPrice(GetRandomNumber());
+            }, 1000);
+        }
+    }, [isChecked]);
+
+    return (<>
+        <input type="checkbox" checked={isChecked} onChange={(e) => HandleCheck(e.target.checked)} /> Show Offer Price
+        
+        <br /><br /><br />
+        
+        <div className="offer">
+            <h2>Get Discount on your first purchase!</h2>
+        </div>
+
+        <p>Offer Price  : <b>{offerPrice}</b></p>
+
+    </>)
 
 }
 
