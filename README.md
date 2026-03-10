@@ -4,7 +4,7 @@
   - [x] Day 1 :- Introduction to ReactJS, ReactJS VS Other frameworks and understanding Virtual DOM 
   - [x] Day 2 :- ES6 Concept and Creating and understanding react app. 
   - [x] Day 3 :- Understanding project structure & Databinding. 
-  - [ ] Day 4 :- Understanding Demo on VirtualDOM, useRef() & useEffect() lifecycle hook. 
+  - [x] Day 4 :- Understanding Demo on VirtualDOM, useRef() & useEffect() lifecycle hook. 
   - [ ] Day 5 :- Class Components and Routing in Reactjs 
   - [ ] Day 6 :- Implement Lazy Loading in Routing 
   - [ ] Day 7 :- Mutable/Immutable object in ES, Uncontrolled and Controlled forms 
