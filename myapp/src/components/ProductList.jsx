@@ -1,13 +1,26 @@
 import { productList } from "../data/data";
+import { useState, useEffect  } from "react";
+import ProductDetail from "./ProductDetail";
 
-function ProductList() {
+function ProductList({selectedcat}) { // Use props to receive the selected category from Search component
 
     const products = productList
+
+
+
+    const [filteredProducts, setFilteredProducts] = useState(products);
+    const selectedCategory = selectedcat;
+
+    useEffect(() => {
+        setFilteredProducts(
+            selectedCategory ? products.filter(x => x.categoryid == selectedCategory) : products
+        );
+    }, [selectedCategory])
 
     return (
         <>
             <h1>Product List</h1>
-            <table border="1" cellPadding="10" cellSpacing="0">
+            <table className="table table-striped" border="1" cellPadding="10" cellSpacing="0">
                 <thead>
                     <tr>
                         <th>Product Id</th>
@@ -18,13 +31,8 @@ function ProductList() {
                     </tr>
                 </thead>
                 <tbody>
-                    {products.map((product, index) => (
-                        <tr key={product.productid}>
-                            <td>{product.productid}</td>
-                            <td>{product.productname}</td>
-                            <td>₹{product.price.toLocaleString()}</td>
-                            <td>{product.productCode}</td>
-                        </tr>
+                    {filteredProducts.map((prod, index) => (
+                      <ProductDetail product={prod} key={prod.productid} cat={selectedCategory} />
                     ))}
                 </tbody>
             </table>
