@@ -3,18 +3,22 @@ import Databinding from "./Databinding";
 import DiscountOffer from "./DiscountOffer";
 import Search from "./Search";
 import NavBar from "./NavBar";
+import NotFound from "./NotFound";
 
 function Layout() {
   return (
     <>
+    <BrowserRouter>
       <NavBar />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/databinding" element={<Databinding />} />
-          <Route path="/discountoffer" element={<DiscountOffer />} />
-          <Route path="/product" element={<Search />} />
-        </Routes>
-      </BrowserRouter>
+      
+      <Routes>
+        <Route path="/databinding" element={<Databinding />} />
+        <Route path="/discountoffer" element={<DiscountOffer />} />
+        <Route path="/product" element={<Search />} />
+
+        <Route path="/*" element={<NotFound />} />
+      </Routes>
+    </BrowserRouter>
     </>
   );
 }

@@ -1,3 +1,5 @@
+import { NavLink } from "react-router-dom";
+
 function NavBar() {
     return (<>
         <nav className="navbar navbar-expand-lg bg-body-tertiary">
@@ -7,11 +9,13 @@ function NavBar() {
                     <span className="navbar-toggler-icon"></span>
                 </button>
                 <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
+                    
                     <div className="navbar-nav">
-                        <a className="nav-link active" aria-current="page" href="#">Home</a>
-                        <a className="nav-link" href="#">Features</a>
-                        <a className="nav-link" href="#">Pricing</a>
-                        <a className="nav-link disabled" aria-disabled="true">Disabled</a>
+                    
+                    <NavLink to="/databinding" className="nav-link active" aria-current="page">Data Binding</NavLink>
+                    <NavLink to="/discountoffer" className="nav-link">Discount Offer</NavLink>
+                    <NavLink to="/product" className="nav-link">Search Product</NavLink>
+
                     </div>
                 </div>
             </div>
