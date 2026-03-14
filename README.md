@@ -167,3 +167,30 @@ useEffect
 	useEffect(()=>{
 	}, [dependencies]);
 	
+### Day5  
+
+Routing
+- Serving a web page/ component based on request url (matching)
+>npm install react-router-dom --save
+
+Steps to pass data from parent to child
+-Add a parent component <Search /> 
+-Add a child component  <ProductList/> with in parent <Search />
+-If you want to pass any data from parent to child, set the attribute of child component
+  <ProductList selectedCat={selectedCategory} myname="pradeep" />
+-In child component, you can read the data using "props" keyword passed in argument to functional component
+  function ProductList(props) {
+    const cat = props.selectedCat;
+  }
+
+
+Steps to implement Routing 
+- Create a component <Layout/>, add the <BrowserRouter> component 
+- Define all the routes with in BrowserRouter
+  <Routes>  --This container holds all the Route elements. It ensures that only one route is rendered at a time 
+                    <Route path="/databinding/:id" element={<Databinding />} /> 
+	</Routes>
+- Create a component  for Navbar and add <NavLink /> 
+	Eg: <NavLink to="/databinding">Databinding</NavLink>
+
+  ### Day6
