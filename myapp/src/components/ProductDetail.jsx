@@ -1,11 +1,11 @@
-function ProductDetail({ product, cat }) {
+function ProductDetail({ product }) {
 
     
     return (
         <>
             <tr key={product.productid}>
                 <td>{product.productid}</td>
-                <td>{product.productname} + {cat}</td>
+                <td>{product.productname}</td>
                 <td>₹{product.price.toLocaleString()}</td>
                 <td>{product.productCode}</td>
             </tr>

@@ -1,21 +1,46 @@
 import { productList } from "../data/data";
-import { useState, useEffect  } from "react";
+import { useState, useEffect } from "react";
 import ProductDetail from "./ProductDetail";
 
-function ProductList({selectedcat}) { // Use props to receive the selected category from Search component
+function ProductList({ selectedcat, searchTxt,searchPrc,srtName }) { // Use props to receive the selected category from Search component
 
     const selectedCategory = selectedcat;
-    
+    const TexttoSearch = searchTxt;
+    const PricetoSearch = searchPrc;
+    const SortName=srtName
 
     const products = productList
     const [filteredProducts, setFilteredProducts] = useState(products);
-   
 
+    // Based on Drop Down Product selected
     useEffect(() => {
-        setFilteredProducts(
-            selectedCategory ? products.filter(x => x.categoryid == selectedCategory) : products
-        );
-    }, [selectedCategory])
+        let filtered = products;
+
+        if (selectedCategory) {
+            filtered = filtered.filter(x => x.categoryid == selectedCategory);
+        }
+
+        if (TexttoSearch) {
+            filtered = filtered.filter(x =>
+                x.productname.toLowerCase().includes(TexttoSearch.toLowerCase())
+            );
+        }
+
+        if (PricetoSearch) {
+            filtered = filtered.filter(x =>
+                x.price >= parseInt(PricetoSearch.split("-")[0]) && x.price <= parseInt(PricetoSearch.split("-")[1])
+            );
+        }
+        
+        if (SortName === "A-Z") {
+            filtered = [...filtered].sort((a, b) => a.productname.localeCompare(b.productname));
+        } else if (SortName === "Z-A") {
+            filtered = [...filtered].sort((a, b) => b.productname.localeCompare(a.productname));
+        }
+
+        setFilteredProducts(filtered);
+    }, [selectedCategory,TexttoSearch,PricetoSearch,SortName])
+
 
     return (
         <>
@@ -32,7 +57,7 @@ function ProductList({selectedcat}) { // Use props to receive the selected categ
                 </thead>
                 <tbody>
                     {filteredProducts.map((prod, index) => (
-                      <ProductDetail product={prod} key={prod.productid} cat={selectedCategory} />
+                        <ProductDetail product={prod} key={prod.productid} />
                     ))}
                 </tbody>
             </table>
