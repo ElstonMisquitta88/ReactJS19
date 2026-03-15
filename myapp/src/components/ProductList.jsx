@@ -4,12 +4,12 @@ import ProductDetail from "./ProductDetail";
 
 function ProductList({selectedcat}) { // Use props to receive the selected category from Search component
 
-    const products = productList
-
-
-
-    const [filteredProducts, setFilteredProducts] = useState(products);
     const selectedCategory = selectedcat;
+    
+
+    const products = productList
+    const [filteredProducts, setFilteredProducts] = useState(products);
+   
 
     useEffect(() => {
         setFilteredProducts(

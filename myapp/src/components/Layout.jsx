@@ -8,17 +8,17 @@ import NotFound from "./NotFound";
 function Layout() {
   return (
     <>
-    <BrowserRouter>
-      <NavBar />
-      
-      <Routes>
-        <Route path="/databinding" element={<Databinding />} />
-        <Route path="/discountoffer" element={<DiscountOffer />} />
-        <Route path="/product" element={<Search />} />
 
-        <Route path="/*" element={<NotFound />} />
-      </Routes>
-    </BrowserRouter>
+
+      <BrowserRouter>
+        <NavBar />
+        <Routes>
+          <Route path="/databinding" element={<Databinding />} />
+          <Route path="/discountoffer" element={<DiscountOffer />} />
+          <Route path="/product" element={<Search />} />
+          <Route path="/*" element={<NotFound />} />
+        </Routes>
+      </BrowserRouter>
     </>
   );
 }
