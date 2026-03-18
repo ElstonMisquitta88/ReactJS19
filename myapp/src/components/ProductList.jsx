@@ -2,7 +2,7 @@ import { productList } from "../data/data";
 import { useState, useEffect } from "react";
 import ProductDetail from "./ProductDetail";
 
-function ProductList({ selectedcat, searchTxt,searchPrc,srtName }) { // Use props to receive the selected category from Search component
+function ProductList({ selectedcat, searchTxt,searchPrc,srtName,onNotify }) { // Use props to receive the selected category from Search component
 
     const selectedCategory = selectedcat;
     const TexttoSearch = searchTxt;
@@ -38,7 +38,10 @@ function ProductList({ selectedcat, searchTxt,searchPrc,srtName }) { // Use prop
             filtered = [...filtered].sort((a, b) => b.productname.localeCompare(a.productname));
         }
 
+        onNotify(filtered.length); // Notify the Search component about the count of filtered products  
+        
         setFilteredProducts(filtered);
+
     }, [selectedCategory,TexttoSearch,PricetoSearch,SortName])
 
 
@@ -52,6 +55,7 @@ function ProductList({ selectedcat, searchTxt,searchPrc,srtName }) { // Use prop
                         <th>Product Name</th>
                         <th>Price</th>
                         <th>Product Code</th>
+                        <th>View </th>
 
                     </tr>
                 </thead>

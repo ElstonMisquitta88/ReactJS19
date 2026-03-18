@@ -4,6 +4,9 @@ import DiscountOffer from "./DiscountOffer";
 import Search from "./Search";
 import NavBar from "./NavBar";
 import NotFound from "./NotFound";
+import ProductView from "./ProductView";
+
+
 
 function Layout() {
   return (
@@ -13,9 +16,12 @@ function Layout() {
       <BrowserRouter>
         <NavBar />
         <Routes>
+
           <Route path="/databinding" element={<Databinding />} />
           <Route path="/discountoffer" element={<DiscountOffer />} />
           <Route path="/product" element={<Search />} />
+          <Route path="/product-view/:id" element={<ProductView/>} />
+
           <Route path="/*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

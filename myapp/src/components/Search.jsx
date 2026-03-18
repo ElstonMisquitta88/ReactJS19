@@ -39,6 +39,10 @@ function Search() {
     }
 
 
+    const onUpdateCount=(count) =>{
+        console.log("Total Products Found : " + count);
+    }
+
     return (
         <>
             <h4>Search Products </h4>
@@ -104,7 +108,10 @@ function Search() {
 
             <div className="row">
                 <div className="col-lg-12 sm-6">
-                    <ProductList selectedcat={selectedCategory} searchTxt={searchText} searchPrc={searchPrice} srtName={sortName} />
+                    <ProductList selectedcat={selectedCategory} 
+                    searchTxt={searchText} searchPrc={searchPrice} srtName={sortName}
+                    onNotify={onUpdateCount}
+                    />
                 </div>
             </div>
 
