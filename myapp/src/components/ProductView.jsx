@@ -1,12 +1,27 @@
-import { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams, useLocation } from "react-router-dom";
 import { productList } from "../data/data";
+import { use } from "react";
 
 function ProductView() {
 
-    // Used to read route parameters from the URL. In this case, it will read the 'id' parameter from the URL.
+    // (A) Used to read route parameters from the URL. In this case, it will read the 'id' parameter from the URL.
     const { id } = useParams();
-    let filtered = productList.filter(x => x.productid == id);
+
+    // (B) useLocation is a hook that returns the current location object, which contains information about the current URL. This can be useful for reading query parameters or other parts of the URL.
+    const loc = useLocation();
+    const queryParams = new URLSearchParams(loc.search);
+    const cityparam = queryParams.get("city");
+    console.log("query params:", cityparam);
+
+
+
+    const filtered = productList.filter(x => x.productid == id);
+
+
+    const navigate = useNavigate();
+    const redirectToProductView = () => {
+        navigate(`/product`);
+    }
 
     return (
         <>
@@ -35,6 +50,16 @@ function ProductView() {
                     </div>
                 </div>
             </div>
+            <div className="container mt-4">
+                <span>
+                  Value from query params:<b> {cityparam} </b>
+                </span>
+            </div>
+            <br></br>
+            <span><input type="button" className="btn btn-primary" value="Back" onClick={() => redirectToProductView()} /></span>
+            <span></span>
+            <span><input type="button" className="btn btn-danger" value="Back" onClick={() => navigate(-1)} /></span>
+
         </>
     )
 }

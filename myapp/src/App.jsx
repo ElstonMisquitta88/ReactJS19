@@ -1,8 +1,8 @@
-import Databinding from "./components/Databinding";
-import DiscountOffer from "./components/DiscountOffer";
+// import Databinding from "./components/Databinding";
+// import DiscountOffer from "./components/DiscountOffer";
 import Layout from "./components/Layout";
-import ProductList from "./components/ProductList";
-import Search from "./components/Search";
+// import ProductList from "./components/ProductList";
+// import Search from "./components/Search";
 
 // This is a component file which is used to create a component in react
 
