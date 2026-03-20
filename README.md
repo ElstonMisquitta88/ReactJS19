@@ -127,7 +127,7 @@ React Fragment - React needs to render only one element
 <div></div>
 <></>
 <React.Fragment></React.Fragment>
-<StrictMode><StrictMode> - A helper component that helps to write better react code providing warning for any deprecated code or identifying risk
+<StrictMode></StrictMode> - A helper component that helps to write better react code providing warning for any deprecated code or identifying risk, it works in development case
 
    
 
@@ -142,7 +142,7 @@ Databinding
 	const [fullName, setFullName] = useState('pradeep shet');
 	
 useState()
-- Used to maintain state 	
+- Used to maintain state 	of object
 
 Virtual DOM 
 - It is a lightweight memory representation of your REAL DOM tree
@@ -163,15 +163,17 @@ useRef
   addressRef.current.value="Mumbai";
 
 useEffect
-- A function that runs code at speectice time, based on dependencies provided. It will automatically trigger based on state changed
+- A function that runs code at specific time, based on dependencies provided. It will automatically trigger based on state changed
 	useEffect(()=>{
 	}, [dependencies]);
-	
-### Day5  
 
-Routing
-- Serving a web page/ component based on request url (matching)
->npm install react-router-dom --save
+
+### Day5
+
+Bootstrap
+>npm install bootstrap@5.4  --save
+- A framework for desigining responsive UI
+ container, row, col, table, form-select, form-group, form-control, btn
 
 Steps to pass data from parent to child
 -Add a parent component <Search /> 
@@ -182,15 +184,53 @@ Steps to pass data from parent to child
   function ProductList(props) {
     const cat = props.selectedCat;
   }
+  
+Steps to pass data rom child to parent
+- Add a method in the parent <Search/>
+     const onUpdateCount = (message) => {
+        setTotalRecords('Total Count:'+ message);
+    }
+-Pass the event to child component 
+  <ProductList  onNotify={(event)=>onUpdateCount(event)}  />
+-Access the onNotify event from props in child <ProductList/> & pass the data
+   onNotify(filtered.length);
 
+
+Routing
+- Serving a web page/ component based on request url (matching)
+>npm install react-router-dom --save
 
 Steps to implement Routing 
 - Create a component <Layout/>, add the <BrowserRouter> component 
+  This is the router component that keeps track of the history and location of your app. It enables navigation between different routes
 - Define all the routes with in BrowserRouter
   <Routes>  --This container holds all the Route elements. It ensures that only one route is rendered at a time 
                     <Route path="/databinding/:id" element={<Databinding />} /> 
 	</Routes>
 - Create a component  for Navbar and add <NavLink /> 
 	Eg: <NavLink to="/databinding">Databinding</NavLink>
+	
+### Day6
 
-  ### Day6
+useParams()
+- Used to read the route parameter
+  const {id} = useParams();
+
+useNavigate()
+-Used to navigate from one route to another
+  const navigate = useNavigate();
+
+useLocation()
+- Used to read the querystring parameter
+	const loc = useLocation();
+    const queryParam = new URLSearchParams(loc.search);
+    const city = queryParam.get('city');
+    const country = queryParam.get('country');
+
+Lazy loading
+-Download the component on demand based on requested url
+- Add a  <Suspense fallback={<div>Loading......</div>}> component which will nake sure untill component is downloaded will show fallback element
+-Define the route using lazy() method
+   const Databinding = lazy(()=> import('./Databinding'));
+ 
+### Day7
