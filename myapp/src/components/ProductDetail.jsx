@@ -7,7 +7,7 @@ function ProductDetail({ product }) {
 
 
     const navigate =useNavigate();
-   
+ 
     const redirectToProductView=(id)=>{
       navigate(`/product-view/${id}`);
     }
