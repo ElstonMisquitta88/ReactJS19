@@ -29,6 +29,21 @@ function FormikForm() {
     } */
 
 
+
+    const productValidationSchema = Yup.object({
+        productCode: Yup.string().required("Product Code Required"),
+        productName: Yup.string().required("Product Name Required"),
+        productPrice: Yup.number()
+            .required("Product Price Required")
+            .positive("Price must be positive")
+            .integer("Price must be an integer")
+            .min(1, "Enter Amount Greater than 1")
+            .max(1000, 'Enter Amount Less than 1000'),
+        productcategory: Yup.string()
+            .required("Product Category Required")
+            .notOneOf(["0"], "Product Category Required")
+    })
+
     return (
         <>
             <h4>Add Product (Formik)</h4>
@@ -37,7 +52,7 @@ function FormikForm() {
 
                     <Formik initialValues={initialProductForm}
                         enableReinitialize={true}
-                        validate={validateFn}
+                        validationSchema={productValidationSchema}
                         onSubmit={(frm) => onHandleSaveProduct(frm)}>
                         <Form>
 
@@ -55,20 +70,24 @@ function FormikForm() {
                             <div className="form-group">
                                 <label>Product Name</label>
                                 <Field name="productName" as="textarea" className="form-control"></Field>
+                                <ErrorMessage className="text-danger" component="label" name="productName"></ErrorMessage>
                             </div>
 
                             <div className="form-group">
                                 <label>Product Price</label>
                                 <Field name="productPrice" className="form-control"></Field>
+                                <ErrorMessage className="text-danger" component="label" name="productPrice"></ErrorMessage>
                             </div>
 
                             <div className="form-group">
                                 <label>Product Category</label>
                                 <Field as="select" name="productcategory" className="form-select">
+                                    <option value="0">--Select Category--</option>
                                     {categories.map((category, index) => {
                                         return <option key={category.id} value={category.id}>{category.categoryName}</option>;
                                     })}
                                 </Field>
+                                <ErrorMessage className="text-danger" component="label" name="productcategory"></ErrorMessage>
                             </div>
 
                             <br />
