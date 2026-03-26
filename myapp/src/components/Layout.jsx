@@ -1,13 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import NavBar from "./NavBar";
-
-
-// import Databinding from "./Databinding";
-// import DiscountOffer from "./DiscountOffer";
-// import Search from "./Search";
-// import NotFound from "./NotFound";
-// import ProductView from "./ProductView";
-
 import { lazy, Suspense } from "react";
 
 const Databinding = lazy(() => import("./Databinding"));
@@ -18,6 +10,8 @@ const NotFound = lazy(() => import("./NotFound"));
 const UnControlledForm = lazy(() => import("./UnControlledForm"));
 const ControlledForm = lazy(() => import("./ControlledForm"));
 const FormikForm = lazy(() => import("./FormikForm"));
+const ProductsFromAPI = lazy(() => import("./ProductsFromAPI"));
+
 
 function Layout() {
   return (
@@ -33,6 +27,7 @@ function Layout() {
             <Route path="/UnControlledForm" element={<UnControlledForm />} />
             <Route path="/ControlledForm" element={<ControlledForm />} />
             <Route path="/FormikForm" element={<FormikForm />} />
+            <Route path="/ProductsFromAPI" element={<ProductsFromAPI />} />
             <Route path="/*" element={<NotFound />} />
           </Routes>
         </Suspense>

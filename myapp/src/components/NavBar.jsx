@@ -16,6 +16,7 @@ function NavBar() {
                     <NavLink to="/UnControlledForm" className="nav-link">UnControlled Form</NavLink>
                     <NavLink to="/ControlledForm" className="nav-link">Controlled Form</NavLink>
                     <NavLink to="/FormikForm" className="nav-link">Formik Form</NavLink>
+                    <NavLink to="/ProductsFromAPI" className="nav-link">Products From API</NavLink>
                     </div>
                 </div>
             </div>

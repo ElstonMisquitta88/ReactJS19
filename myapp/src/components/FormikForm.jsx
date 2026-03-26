@@ -1,35 +1,43 @@
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import { categoryList } from '../data/data';
 import * as Yup from "yup";
+import ProductService from '../services/Product.service';
 
 function FormikForm() {
 
     const initialProductForm = {
-        productid: 0,
-        productCode: "",
-        productName: "",
-        productPrice: "",
-        productcategory: ""
+        ProductId: 0,
+        ProductCode: "",
+        ProductName: "",
+        Price: "",
+        Category: ""
     }
 
     const categories = categoryList;
 
 
     const onHandleSaveProduct = (frm) => {
-        alert("Product Saved : " + JSON.stringify(frm)); // Can Push this data to API   
+
+        ProductService.addProduct(frm)
+            .then(response => {
+                alert("Product Saved Successfully!");
+            })
+            .catch(error => {
+                alert("Error saving product!");
+            });
     }
 
 
     const productValidationSchema = Yup.object({
-        productCode: Yup.string().required("Product Code Required"),
-        productName: Yup.string().required("Product Name Required"),
-        productPrice: Yup.number()
+        ProductCode: Yup.string().required("Product Code Required"),
+        ProductName: Yup.string().required("Product Name Required"),
+        Price: Yup.number()
             .required("Product Price Required")
             .positive("Price must be positive")
             .integer("Price must be an integer")
             .min(1, "Enter Amount Greater than 1")
             .max(1000, 'Enter Amount Less than 1000'),
-        productcategory: Yup.string()
+        Category: Yup.string()
             .required("Product Category Required")
             .notOneOf(["0"], "Product Category Required")
     })
@@ -48,36 +56,36 @@ function FormikForm() {
 
                             <div className="form-group">
                                 <label>Product Id</label>
-                                <Field name="productid" className="form-control"></Field>
+                                <Field name="ProductId" className="form-control"></Field>
                             </div>
 
                             <div className="form-group">
                                 <label>Product Code</label>
-                                <Field name="productCode" className="form-control"></Field>
-                                <ErrorMessage className="text-danger" component="label" name="productCode"></ErrorMessage>
+                                <Field name="ProductCode" className="form-control"></Field>
+                                <ErrorMessage className="text-danger" component="label" name="ProductCode"></ErrorMessage>
                             </div>
 
                             <div className="form-group">
                                 <label>Product Name</label>
-                                <Field name="productName" as="textarea" className="form-control"></Field>
-                                <ErrorMessage className="text-danger" component="label" name="productName"></ErrorMessage>
+                                <Field name="ProductName" as="textarea" className="form-control"></Field>
+                                <ErrorMessage className="text-danger" component="label" name="ProductName"></ErrorMessage>
                             </div>
 
                             <div className="form-group">
                                 <label>Product Price</label>
-                                <Field name="productPrice" className="form-control"></Field>
-                                <ErrorMessage className="text-danger" component="label" name="productPrice"></ErrorMessage>
+                                <Field name="Price" className="form-control"></Field>
+                                <ErrorMessage className="text-danger" component="label" name="Price"></ErrorMessage>
                             </div>
 
                             <div className="form-group">
                                 <label>Product Category</label>
-                                <Field as="select" name="productcategory" className="form-select">
+                                <Field as="select" name="Category" className="form-select">
                                     <option value="0">--Select Category--</option>
                                     {categories.map((category, index) => {
                                         return <option key={category.id} value={category.id}>{category.categoryName}</option>;
                                     })}
                                 </Field>
-                                <ErrorMessage className="text-danger" component="label" name="productcategory"></ErrorMessage>
+                                <ErrorMessage className="text-danger" component="label" name="Category"></ErrorMessage>
                             </div>
 
                             <br />

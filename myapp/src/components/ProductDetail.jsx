@@ -14,13 +14,13 @@ function ProductDetail({ product }) {
 
     return (
         <>
-            <tr key={product.productid}>
-                <td>{product.productid}</td>
-                <td>{product.productname}</td>
+             <tr key={product.productId}>
+                <td>{product.productId}</td>
+                <td>{product.productName}</td>
                 <td>₹{product.price.toLocaleString()}</td>
                 <td>{product.productCode}</td>
                 <td><input type="button" className="btn btn-info" value="View"
-                    onClick={(e) => redirectToProductView(product.productid)}
+                    onClick={(e) => redirectToProductView(product.productId)}
                 /></td>
             </tr>
         </>
