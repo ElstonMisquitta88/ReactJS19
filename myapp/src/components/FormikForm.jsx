@@ -19,16 +19,6 @@ function FormikForm() {
         alert("Product Saved : " + JSON.stringify(frm)); // Can Push this data to API   
     }
 
-    // Note : We can also use Yup for Validation instead of writing our own validation function
-    /*     const validateFn = (frm) => {
-        let errors = {};
-        if (!frm.productCode) {
-            errors.productCode = "Product Code Required";
-        }
-        return errors;
-    } */
-
-
 
     const productValidationSchema = Yup.object({
         productCode: Yup.string().required("Product Code Required"),
@@ -91,7 +81,9 @@ function FormikForm() {
                             </div>
 
                             <br />
-                            <input type="submit" value="Save Product" className="btn btn-primary" />
+                            <button type="submit" className="btn btn-primary">
+                                Save Product
+                            </button>
 
                         </Form>
                     </Formik>
