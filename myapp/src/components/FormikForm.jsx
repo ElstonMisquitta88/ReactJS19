@@ -2,6 +2,7 @@ import { ErrorMessage, Field, Form, Formik } from 'formik';
 import { categoryList } from '../data/data';
 import * as Yup from "yup";
 import ProductService from '../services/Product.service';
+import { useState } from "react";
 
 function FormikForm() {
 
@@ -14,16 +15,18 @@ function FormikForm() {
     }
 
     const categories = categoryList;
+    const [message, setmessage] = useState("");
 
-
-    const onHandleSaveProduct = (frm) => {
+    const onHandleSaveProduct = (frm,resetForm) => {
 
         ProductService.addProduct(frm)
             .then(response => {
-                alert("Product Saved Successfully!");
+
+                setmessage("Product Saved Successfully!");
+                resetForm();
             })
             .catch(error => {
-                alert("Error saving product!");
+                setmessage("Error saving product!");
             });
     }
 
@@ -45,13 +48,20 @@ function FormikForm() {
     return (
         <>
             <h4>Add Product (Formik)</h4>
+            {message && (
+                <div className="alert alert-success" role="alert">
+                    {message}
+                </div>
+            )}
+
+
             <div className="row">
                 <div className="col-lg-6">
 
                     <Formik initialValues={initialProductForm}
                         enableReinitialize={true}
                         validationSchema={productValidationSchema}
-                        onSubmit={(frm) => onHandleSaveProduct(frm)}>
+                        onSubmit={(frm, { resetForm }) => onHandleSaveProduct(frm, resetForm)}>
                         <Form>
 
                             <div className="form-group">
