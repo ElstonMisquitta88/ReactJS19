@@ -3,8 +3,9 @@ import api from "./api";
 function login(credentials) {
     return api.post('/api/Authentication/Token', credentials)
         .then(res => {
-            localStorage.setItem("token", res.data.token);
-            return res.data;
+            const token = res.data;
+            localStorage.setItem("token", token);
+            return { token }; // normalized response
         });
 }
 

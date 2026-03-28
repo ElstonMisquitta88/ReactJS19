@@ -5,6 +5,12 @@ function getAllTodos() {
         .then(res => res.data);
 }
 
+function MarkComplete(todoid) {
+    return api.put(`/api/Todos/${todoid}/Complete`)
+        .then(res => res.data);
+}
+
 export default {
-    getAllTodos
+    getAllTodos,
+    MarkComplete
 };

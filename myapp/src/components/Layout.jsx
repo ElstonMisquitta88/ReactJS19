@@ -11,7 +11,10 @@ const UnControlledForm = lazy(() => import("./UnControlledForm"));
 const ControlledForm = lazy(() => import("./ControlledForm"));
 const FormikForm = lazy(() => import("./FormikForm"));
 const ProductsFromAPI = lazy(() => import("./ProductsFromAPI"));
-const Login = lazy(() => import("./Login"));
+const Login = lazy(() => import("./login"));
+const TodoList = lazy(() => import("./TodoList"));
+
+
 
 function Layout() {
   return (
@@ -29,6 +32,7 @@ function Layout() {
             <Route path="/FormikForm" element={<FormikForm />} />
             <Route path="/ProductsFromAPI" element={<ProductsFromAPI />} />
             <Route path="/Login" element={<Login />} />
+            <Route path="/TodoList" element={<TodoList />} />
             <Route path="/*" element={<NotFound />} />
           </Routes>
         </Suspense>

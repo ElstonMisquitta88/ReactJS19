@@ -22,28 +22,22 @@ function Login() {
 
     const navigate = useNavigate();
     const redirectTodoPage = () => {
-        navigate(`/Login`);
+        navigate(`/TodoList`);
     }
 
-    const onHandleLogin = (frm, resetForm) => {
+    const onLogin = (frm) => {
         authservice.login(frm)
             .then(response => {
                 setToken(response);
-                setmessage("Login Successfully! Token :" + response);
-                resetForm();
+                setmessage("Login Successfully");
                 redirectTodoPage();
             }
             )
             .catch(error => {
-                setmessage("Error logging in!");
+                setmessage("Error logging in");
             });
     }
-
-    useEffect(() => {
-        console.log("Updated token:", token);
-    }, [token]);
-
-    const logout = () => {
+    const onlogout = () => {
         authservice.logout();
         setToken("");
         setmessage("Logged Out");
@@ -69,7 +63,7 @@ function Login() {
                     <Formik initialValues={initialLogin}
                         enableReinitialize={true}
                         validationSchema={loginValidationSchema}
-                        onSubmit={(frm, { resetForm }) => onHandleLogin(frm, resetForm)}>
+                        onSubmit={(frm) => onLogin(frm)}>
                         <Form>
 
                             {!token && (
@@ -87,13 +81,13 @@ function Login() {
                                 </span>
                             )}
                             <br />
-                            <div class="d-flex justify-content-start">
+                            <div className="d-flex justify-content-start">
                                 {!token && (
                                     <button type="submit" className="btn btn-primary me-2">Login </button>
                                 )}
 
                                 {token && (
-                                    <button type="button" onClick={logout} className="btn btn-danger">Logout</button>
+                                    <button type="button" onClick={onlogout} className="btn btn-danger">Logout</button>
                                 )}
                             </div>
                         </Form>
