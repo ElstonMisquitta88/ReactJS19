@@ -1,7 +1,6 @@
 import Axios from 'axios';
 
 function getAllProducts() {
-
     return Axios.get('https://localhost:7206/api/ProductApi/getall')
         .then(response => response.data)
         .catch(error => {

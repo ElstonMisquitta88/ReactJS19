@@ -3,6 +3,7 @@ import { categoryList } from '../data/data';
 import * as Yup from "yup";
 import ProductService from '../services/Product.service';
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function FormikForm() {
 
@@ -17,13 +18,20 @@ function FormikForm() {
     const categories = categoryList;
     const [message, setmessage] = useState("");
 
-    const onHandleSaveProduct = (frm,resetForm) => {
+    const navigate = useNavigate();
+    const redirectToProductsFromAPI = () => {
+        navigate(`/ProductsFromAPI`);
+    }
+
+
+    const onHandleSaveProduct = (frm, resetForm) => {
 
         ProductService.addProduct(frm)
             .then(response => {
 
                 setmessage("Product Saved Successfully!");
                 resetForm();
+                redirectToProductsFromAPI();
             })
             .catch(error => {
                 setmessage("Error saving product!");
