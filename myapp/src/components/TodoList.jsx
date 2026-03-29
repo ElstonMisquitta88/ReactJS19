@@ -9,7 +9,6 @@ function TodoList() {
     useEffect(() => {
         TodoService.getAllTodos()
             .then(data => {
-                console.log("API Data:", data);
                 setTodoList(data);
             })
             .catch(error => console.error('Error fetching todos:', error));
@@ -17,17 +16,25 @@ function TodoList() {
 
 
     const handleToggle = (todoitem) => {
-        console.log(todoitem.id);
-        console.log(todoitem.isComplete);
-
         TodoService.MarkComplete(todoitem.id)
             .then(() => {
                 setTodoList(prev =>
                     prev.map(t =>
                         t.id === todoitem.id
-                            ? { ...t, isComplete: true } // ✅ update here
+                            ? { ...t, isComplete: true }
                             : t
                     )
+                );
+            })
+            .catch(error => console.error('Error:', error));
+    }
+
+    const handleDelete = (id) => {
+        console.log(`Id To Delete ${id}`)
+        TodoService.DeleteTodo(id)
+            .then(() => {
+                setTodoList(prev =>
+                   prev.filter(item => item.id !== id)
                 );
             })
             .catch(error => console.error('Error:', error));
@@ -42,6 +49,7 @@ function TodoList() {
                         <th>Todo Id</th>
                         <th>Task</th>
                         <th>Is Complete</th>
+                        <th>Delete Task</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -50,12 +58,12 @@ function TodoList() {
                             <td>{todoitem.id}</td>
                             <td>{todoitem.task}</td>
                             <td>
-                                <input
-                                    type="checkbox"
-                                    checked={todoitem.isComplete}
-                                    onChange={() => handleToggle(todoitem)}
-                                />
+                                <input type="checkbox" checked={todoitem.isComplete} onChange={() => handleToggle(todoitem)} />
                             </td>
+                            <td>
+                                <button className="btn btn-danger" onClick={() => handleDelete(todoitem.id)}>Delete</button>
+                            </td>
+
                         </tr>
                     ))}
                 </tbody>

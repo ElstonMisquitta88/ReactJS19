@@ -10,7 +10,15 @@ function MarkComplete(todoid) {
         .then(res => res.data);
 }
 
+function DeleteTodo(todoid) {
+    return api.delete(`/api/Todos/${todoid}`)
+        .then(res => res.data);
+}
+
+
+
 export default {
     getAllTodos,
-    MarkComplete
+    MarkComplete,
+    DeleteTodo
 };

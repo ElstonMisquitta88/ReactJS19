@@ -43,8 +43,6 @@ function Login() {
         setmessage("Logged Out");
     }
 
-
-
     return (
         <>
 
@@ -55,7 +53,7 @@ function Login() {
             )}
 
 
-            <h4>Login</h4>
+            <h4>ToDo List Login Page</h4>
 
             <div className="row">
                 <div className="col-lg-6">
@@ -71,6 +69,7 @@ function Login() {
                                     <div className="form-group">
                                         <label>userName</label>
                                         <Field name="userName" className="form-control"></Field>
+                                        <ErrorMessage className="text-danger" component="label" name="userName"></ErrorMessage>
                                     </div>
 
                                     <div className="form-group">
