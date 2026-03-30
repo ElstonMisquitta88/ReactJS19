@@ -9,7 +9,7 @@ function TodoList() {
     useEffect(() => {
         TodoService.getAllTodos()
             .then(data => {
-                setTodoList(data);
+                setTodoList(data.sort((a, b) => b.id - a.id));
             })
             .catch(error => console.error('Error fetching todos:', error));
     }, []);

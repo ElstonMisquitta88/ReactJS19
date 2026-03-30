@@ -13,7 +13,7 @@ const FormikForm = lazy(() => import("./FormikForm"));
 const ProductsFromAPI = lazy(() => import("./ProductsFromAPI"));
 const Login = lazy(() => import("./login"));
 const TodoList = lazy(() => import("./TodoList"));
-
+const TodoForm = lazy(() => import("./TodoForm"));
 
 
 function Layout() {
@@ -33,6 +33,7 @@ function Layout() {
             <Route path="/ProductsFromAPI" element={<ProductsFromAPI />} />
             <Route path="/Login" element={<Login />} />
             <Route path="/TodoList" element={<TodoList />} />
+            <Route path="/add-todo" element={<TodoForm />} />
             <Route path="/*" element={<NotFound />} />
           </Routes>
         </Suspense>

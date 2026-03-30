@@ -7,8 +7,12 @@ function getAllTodos() {
 
 
 function AddTodo(task) {
-    return api.post('/api/Todos', task)
-        .then(res => res.data);
+    return api.post('/api/Todos', JSON.stringify(task), {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(res => res.data);
 }
 
 function MarkComplete(todoid) {
