@@ -261,7 +261,7 @@ Controlled form
 
 ### Day8
 
-Formik
+- Formik
 - Is a lightweight, easy-to-use React form library that simplifies form state management, validation, and handling form submission
 - Known for simplicity, handles form state, built in validation
 
