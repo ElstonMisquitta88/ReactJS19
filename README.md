@@ -252,16 +252,16 @@ console.log('Immutable', arr2Copy);
 
 
 Uncontrolled form 
--Means that form elements (like <input>, <textarea>, <select>) do not store their state in React but instead rely on the DOM itself. 
+-Means that form elements (like input, textarea, select) do not store their state in React but instead rely on the DOM itself. 
 -We use refs to access the values directly
 
 Controlled form 
--Means that form elements (like <input>, <textarea>, <select>) do store their state in React.
+-Means that form elements (like input, textarea, select) do store their state in React.
 
 
 ### Day8
 
-- Formik
+Formik
 - Is a lightweight, easy-to-use React form library that simplifies form state management, validation, and handling form submission
 - Known for simplicity, handles form state, built in validation
 
@@ -298,3 +298,14 @@ Steps to implement Formik Formik
 			 validationSchema={productValidationSchema}
 -Show error message using <ErrorMessage/> tag
      <ErrorMessage component="label" className="text-danger" name="productCode" />
+	 
+
+### Day9
+Axios 
+>npm install axios --save
+- axios js library is used to make http request from browser
+-It has a feature of interceptor for intercepting the req & resp to enable any custom logic (passing headerss)
+-It has the ability to cancel the request
+
+CRUD operation
+
