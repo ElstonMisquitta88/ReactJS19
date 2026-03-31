@@ -73,8 +73,7 @@ function TodoList() {
                             </td>
 
                             <td>
-                                <input type="button" className="btn btn-info" value="Edit"
-                                    onClick={(e) => redirectToTodoForm(todoitem.id)} />
+                                <button disabled={todoitem.isComplete} className="btn btn-info" onClick={() => redirectToTodoForm(todoitem.id)}>Edit</button>
                             </td>
 
                         </tr>
@@ -82,7 +81,7 @@ function TodoList() {
                 </tbody>
             </table>
         </>
-    )   // Component implementation
+    )   
 }
 
 
