@@ -72,7 +72,7 @@ function TodoList() {
                                 <input type="checkbox" checked={todoitem.isComplete} onChange={() => handleToggle(todoitem)} />
                             </td>
                             <td>
-                                <button className="btn btn-danger" onClick={() => handleDelete(todoitem.id)}>Delete</button>
+                                <button className="btn btn-danger" onClick={() => handleDelete(todoitem.id)}>X</button>
                             </td>
 
                             <td>
