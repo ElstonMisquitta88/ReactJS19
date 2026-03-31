@@ -5,10 +5,10 @@
   - [x] Day 2 :- ES6 Concept and Creating and understanding react app. 
   - [x] Day 3 :- Understanding project structure & Databinding. 
   - [x] Day 4 :- Understanding Demo on VirtualDOM, useRef() & useEffect() lifecycle hook. 
-  - [ ] Day 5 :- Class Components and Routing in Reactjs 
-  - [ ] Day 6 :- Implement Lazy Loading in Routing 
-  - [ ] Day 7 :- Mutable/Immutable object in ES, Uncontrolled and Controlled forms 
-  - [ ] Day 8 :- Implementing Formik form with YUP 
+  - [x] Day 5 :- Class Components and Routing in Reactjs 
+  - [x] Day 6 :- Implement Lazy Loading in Routing 
+  - [x] Day 7 :- Mutable/Immutable object in ES, Uncontrolled and Controlled forms 
+  - [x] Day 8 :- Implementing Formik form with YUP
   - [ ] Day 9 :- Consuming WEB API in React using Axios 
   - [ ] Day 10 :- Eliminating prop drilling using Context API. 
   - [ ] Day 11 :- Functional Component vs Class Component vs Functional Typescript Component. 
@@ -127,7 +127,7 @@ React Fragment - React needs to render only one element
 <div></div>
 <></>
 <React.Fragment></React.Fragment>
-<StrictMode><StrictMode> - A helper component that helps to write better react code providing warning for any deprecated code or identifying risk
+<StrictMode></StrictMode> - A helper component that helps to write better react code providing warning for any deprecated code or identifying risk, it works in development case
 
    
 
@@ -142,7 +142,7 @@ Databinding
 	const [fullName, setFullName] = useState('pradeep shet');
 	
 useState()
-- Used to maintain state 	
+- Used to maintain state 	of object
 
 Virtual DOM 
 - It is a lightweight memory representation of your REAL DOM tree
@@ -163,7 +163,149 @@ useRef
   addressRef.current.value="Mumbai";
 
 useEffect
-- A function that runs code at speectice time, based on dependencies provided. It will automatically trigger based on state changed
+- A function that runs code at specific time, based on dependencies provided. It will automatically trigger based on state changed
 	useEffect(()=>{
 	}, [dependencies]);
+
+
+### Day5
+
+Bootstrap
+>npm install bootstrap@5.4  --save
+- A framework for desigining responsive UI
+ container, row, col, table, form-select, form-group, form-control, btn
+
+Steps to pass data from parent to child
+-Add a parent component <Search /> 
+-Add a child component  <ProductList/> with in parent <Search />
+-If you want to pass any data from parent to child, set the attribute of child component
+  <ProductList selectedCat={selectedCategory} myname="pradeep" />
+-In child component, you can read the data using "props" keyword passed in argument to functional component
+  function ProductList(props) {
+    const cat = props.selectedCat;
+  }
+  
+Steps to pass data rom child to parent
+- Add a method in the parent <Search/>
+     const onUpdateCount = (message) => {
+        setTotalRecords('Total Count:'+ message);
+    }
+-Pass the event to child component 
+  <ProductList  onNotify={(event)=>onUpdateCount(event)}  />
+-Access the onNotify event from props in child <ProductList/> & pass the data
+   onNotify(filtered.length);
+
+
+Routing
+- Serving a web page/ component based on request url (matching)
+>npm install react-router-dom --save
+
+Steps to implement Routing 
+- Create a component <Layout/>, add the <BrowserRouter> component 
+  This is the router component that keeps track of the history and location of your app. It enables navigation between different routes
+- Define all the routes with in BrowserRouter
+  <Routes>  --This container holds all the Route elements. It ensures that only one route is rendered at a time 
+                    <Route path="/databinding/:id" element={<Databinding />} /> 
+	</Routes>
+- Create a component  for Navbar and add <NavLink /> 
+	Eg: <NavLink to="/databinding">Databinding</NavLink>
 	
+### Day6
+
+useParams()
+- Used to read the route parameter
+  const {id} = useParams();
+
+useNavigate()
+-Used to navigate from one route to another
+  const navigate = useNavigate();
+
+useLocation()
+- Used to read the querystring parameter
+	const loc = useLocation();
+    const queryParam = new URLSearchParams(loc.search);
+    const city = queryParam.get('city');
+    const country = queryParam.get('country');
+
+Lazy loading
+-Download the component on demand based on requested url
+- Add a  <Suspense fallback={<div>Loading......</div>}> component which will nake sure untill component is downloaded will show fallback element
+-Define the route using lazy() method
+   const Databinding = lazy(()=> import('./Databinding'));
+ 
+### Day7
+
+-Javascript object /array is by default mutable
+-In order to update values immutably, your code must make copies of  existing objects/arrays and then modify the copy.
+
+//copy the object & overwrite/extend the property
+const obj1Copy = {
+    ...obj1, personId: 2, address: 'mumbai'
+}
+console.log('Immutable=', obj1Copy, obj1);
+
+const arr1 = ['a','b'];
+//create new copy of array & add then new item
+const arr1Copy = [...arr1, 'c']; 
+const  arr2Copy = arr1.concat('d');
+console.log('Immutable', arr2Copy);
+
+
+Uncontrolled form 
+-Means that form elements (like input, textarea, select) do not store their state in React but instead rely on the DOM itself. 
+-We use refs to access the values directly
+
+Controlled form 
+-Means that form elements (like input, textarea, select) do store their state in React.
+
+
+### Day8
+
+Formik
+- Is a lightweight, easy-to-use React form library that simplifies form state management, validation, and handling form submission
+- Known for simplicity, handles form state, built in validation
+
+>npm install formik --save
+>npm install yup --save
+
+
+Steps to implement Formik Formik
+- Create a Formik tag and set the initial model & handle submit event
+	const initalProductForm = {
+        productId: 0,
+        productCode: "",
+        productName: "",
+        price: "",
+        category: ""
+    }
+
+  <Formik 
+		initialValues={initialProductForm}
+		onSubmit={(frm) => handleSaveProduct(frm)}
+		enableReinitialize={true}>
+  </Formik>
+- Add input elments, where "frm" is form object, that will track all the control states. Use <Field /> tag to render input element
+- All input element should have "name" attribute same as model property
+- Add validation using Yup package and create validation schema object
+	  const productValidationSchema = Yup.object({
+        productId: Yup.number().min(0, 'Product Id is mandatory'),
+        productCode: Yup.string().required('Product code is mandatory'),
+        price: Yup.string()
+            .required('Product Price is mandatory')
+            .matches(/^\d+(\.\d{1,2})?$/, "Product Price is Invalid")
+		});
+		Add attribute to Formik tag 
+			 validationSchema={productValidationSchema}
+-Show error message using <ErrorMessage/> tag
+     <ErrorMessage component="label" className="text-danger" name="productCode" />
+	 
+
+### Day9
+Axios 
+>npm install axios --save
+- axios js library is used to make http request from browser
+-It has a feature of interceptor for intercepting the req & resp to enable any custom logic (passing headerss)
+-It has the ability to cancel the request
+
+CRUD operation
+
