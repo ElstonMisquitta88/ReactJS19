@@ -5,10 +5,10 @@
   - [x] Day 2 :- ES6 Concept and Creating and understanding react app. 
   - [x] Day 3 :- Understanding project structure & Databinding. 
   - [x] Day 4 :- Understanding Demo on VirtualDOM, useRef() & useEffect() lifecycle hook. 
-  - [ ] Day 5 :- Class Components and Routing in Reactjs 
-  - [ ] Day 6 :- Implement Lazy Loading in Routing 
-  - [ ] Day 7 :- Mutable/Immutable object in ES, Uncontrolled and Controlled forms 
-  - [ ] Day 8 :- Implementing Formik form with YUP 
+  - [x] Day 5 :- Class Components and Routing in Reactjs 
+  - [x] Day 6 :- Implement Lazy Loading in Routing 
+  - [x] Day 7 :- Mutable/Immutable object in ES, Uncontrolled and Controlled forms 
+  - [x] Day 8 :- Implementing Formik form with YUP
   - [ ] Day 9 :- Consuming WEB API in React using Axios 
   - [ ] Day 10 :- Eliminating prop drilling using Context API. 
   - [ ] Day 11 :- Functional Component vs Class Component vs Functional Typescript Component. 
@@ -234,3 +234,66 @@ Lazy loading
    const Databinding = lazy(()=> import('./Databinding'));
  
 ### Day7
+
+-Javascript object /array is by default mutable
+-In order to update values immutably, your code must make copies of  existing objects/arrays and then modify the copy.
+
+//copy the object & overwrite/extend the property
+const obj1Copy = {
+    ...obj1, personId: 2, address: 'mumbai'
+}
+console.log('Immutable=', obj1Copy, obj1);
+
+const arr1 = ['a','b'];
+//create new copy of array & add then new item
+const arr1Copy = [...arr1, 'c']; 
+const  arr2Copy = arr1.concat('d');
+console.log('Immutable', arr2Copy);
+
+
+Uncontrolled form 
+-Means that form elements (like <input>, <textarea>, <select>) do not store their state in React but instead rely on the DOM itself. 
+-We use refs to access the values directly
+
+Controlled form 
+-Means that form elements (like <input>, <textarea>, <select>) do store their state in React.
+
+### Day8
+
+Formik
+- Is a lightweight, easy-to-use React form library that simplifies form state management, validation, and handling form submission
+- Known for simplicity, handles form state, built in validation
+
+>npm install formik --save
+>npm install yup --save
+
+
+Steps to implement Formik Formik
+- Create a Formik tag and set the initial model & handle submit event
+	const initalProductForm = {
+        productId: 0,
+        productCode: "",
+        productName: "",
+        price: "",
+        category: ""
+    }
+
+  <Formik 
+		initialValues={initialProductForm}
+		onSubmit={(frm) => handleSaveProduct(frm)}
+		enableReinitialize={true}>
+  </Formik>
+- Add input elments, where "frm" is form object, that will track all the control states. Use <Field /> tag to render input element
+- All input element should have "name" attribute same as model property
+- Add validation using Yup package and create validation schema object
+	  const productValidationSchema = Yup.object({
+        productId: Yup.number().min(0, 'Product Id is mandatory'),
+        productCode: Yup.string().required('Product code is mandatory'),
+        price: Yup.string()
+            .required('Product Price is mandatory')
+            .matches(/^\d+(\.\d{1,2})?$/, "Product Price is Invalid")
+		});
+		Add attribute to Formik tag 
+			 validationSchema={productValidationSchema}
+-Show error message using <ErrorMessage/> tag
+     <ErrorMessage component="label" className="text-danger" name="productCode" />
