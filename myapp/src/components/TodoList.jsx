@@ -48,7 +48,10 @@ function TodoList() {
 
     return (
         <>
-            <h1>Todo List</h1>
+            <div className="text-center mb-4">
+                <h5 style={{ backgroundColor: '#007bff', color: 'white', borderRadius: '15px', padding: '10px 20px', display: 'inline-block', border: 'none' }}>
+                    Todo List Details</h5>
+            </div>
             <table className="table table-striped" border="1" cellPadding="10" cellSpacing="0">
                 <thead>
                     <tr>

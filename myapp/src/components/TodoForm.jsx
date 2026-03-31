@@ -14,8 +14,6 @@ function TodoForm() {
     });
     const _formMode = id ? "Edit" : "Add";
 
-
-
     const navigate = useNavigate();
     const redirectToTodoList = () => {
         navigate(`/TodoList`);
@@ -36,8 +34,11 @@ function TodoForm() {
         }
         else {
             console.log("Add Mode");
+            settodoItem({
+                task: ""
+            });
         }
-    }, []);
+    }, [_formMode]);
 
 
     const onHandleSaveTodo = (frm, resetForm) => {
@@ -100,7 +101,7 @@ function TodoForm() {
 
                             <br />
                             <button type="submit" className="btn btn-primary">
-                                Save TODO
+                                {(_formMode === "Add") ? "Save" : "Update"} TODO
                             </button>
 
                         </Form>

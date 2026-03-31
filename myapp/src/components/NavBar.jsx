@@ -19,7 +19,7 @@ function NavBar() {
                         <NavLink to="/ProductsFromAPI" className="nav-link">Products From API</NavLink>
                         <NavLink to="/Login" className="nav-link">Login for Todo Page</NavLink>
                         <NavLink to="/TodoList" className="nav-link">Todo List</NavLink>
-                        <NavLink to="/add-todo" className="nav-link">Add TODO</NavLink>
+                        <NavLink to="/add-todo" className="nav-link">Add / Edit TODO</NavLink>
                     </div>
                 </div>
             </div>
