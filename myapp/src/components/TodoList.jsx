@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import TodoService from "../services/todo.service";
-
+import { useNavigate } from "react-router-dom";
 
 
 function TodoList() {
@@ -34,11 +34,17 @@ function TodoList() {
         TodoService.DeleteTodo(id)
             .then(() => {
                 setTodoList(prev =>
-                   prev.filter(item => item.id !== id)
+                    prev.filter(item => item.id !== id)
                 );
             })
             .catch(error => console.error('Error:', error));
     }
+
+    const navigate = useNavigate();
+    const redirectToTodoForm = (id) => {
+        navigate(`/edit-todo/${id}`);
+    }
+
 
     return (
         <>
@@ -50,6 +56,8 @@ function TodoList() {
                         <th>Task</th>
                         <th>Is Complete</th>
                         <th>Delete Task</th>
+                        <th>Edit Task</th>
+                        
                     </tr>
                 </thead>
                 <tbody>
@@ -62,6 +70,11 @@ function TodoList() {
                             </td>
                             <td>
                                 <button className="btn btn-danger" onClick={() => handleDelete(todoitem.id)}>Delete</button>
+                            </td>
+
+                            <td>
+                                <input type="button" className="btn btn-info" value="Edit"
+                                    onClick={(e) => redirectToTodoForm(todoitem.id)} />
                             </td>
 
                         </tr>

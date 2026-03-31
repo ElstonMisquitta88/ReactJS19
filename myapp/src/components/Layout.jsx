@@ -32,8 +32,12 @@ function Layout() {
             <Route path="/FormikForm" element={<FormikForm />} />
             <Route path="/ProductsFromAPI" element={<ProductsFromAPI />} />
             <Route path="/Login" element={<Login />} />
+            
+            {/* TODO List Routes */}
             <Route path="/TodoList" element={<TodoList />} />
             <Route path="/add-todo" element={<TodoForm />} />
+            <Route path="/edit-todo/:id" element={<TodoForm />} />
+
             <Route path="/*" element={<NotFound />} />
           </Routes>
         </Suspense>

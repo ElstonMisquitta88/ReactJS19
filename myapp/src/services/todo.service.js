@@ -6,8 +6,22 @@ function getAllTodos() {
 }
 
 
+function getTodoById(id) {
+    return api.get(`/api/Todos/${id}`)
+        .then(res => res.data);
+}
+
 function AddTodo(task) {
     return api.post('/api/Todos', JSON.stringify(task), {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(res => res.data);
+}
+
+function UpdateTodo(task, id) {
+    return api.put(`/api/Todos/${id}`, JSON.stringify(task), {
         headers: {
             'Content-Type': 'application/json'
         }
@@ -29,7 +43,9 @@ function DeleteTodo(todoid) {
 
 export default {
     getAllTodos,
+    getTodoById,
     AddTodo,
     MarkComplete,
-    DeleteTodo
+    DeleteTodo,
+    UpdateTodo
 };
