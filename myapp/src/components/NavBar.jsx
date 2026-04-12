@@ -1,6 +1,15 @@
+import { useContext } from "react";
 import { NavLink } from "react-router-dom";
+import { UserContext } from "../context/UserProvider";
+
+
+
 
 function NavBar() {
+
+
+    const { currentUser } = useContext(UserContext);
+
     return (<>
         <nav className="navbar navbar-expand-lg bg-body-tertiary">
             <div className="container-fluid">
@@ -9,6 +18,8 @@ function NavBar() {
                     <span className="navbar-toggler-icon"></span>
                 </button>
                 <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
+                   Welcome, <b>{currentUser}</b>
+
                     <div className="navbar-nav">
                         {/* <NavLink to="/databinding" className="nav-link active" aria-current="page">Data Binding</NavLink> */}
                         <NavLink to="/discountoffer" className="nav-link">Discount Offer</NavLink>

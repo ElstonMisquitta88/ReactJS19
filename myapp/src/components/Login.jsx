@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import authservice from "../services/auth.service";
 
-function Login() {
+function login() {
 
     const initialLogin = {
         userName: "",
@@ -99,4 +99,4 @@ function Login() {
     )
 }
 
-export default Login;
+export default login;

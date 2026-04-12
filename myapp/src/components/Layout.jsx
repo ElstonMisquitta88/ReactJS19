@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import NavBar from "./NavBar";
 import { lazy, Suspense } from "react";
+import UserProvider, { UserContext } from "../context/UserProvider";
 
 const Databinding = lazy(() => import("./Databinding"));
 const DiscountOffer = lazy(() => import("./Databinding"));
@@ -20,27 +21,27 @@ function Layout() {
   return (
     <>
       <BrowserRouter>
-        <NavBar />
-        <Suspense fallback={<div>Loading...</div>}>
-          <Routes>
-            <Route path="/databinding" element={<Databinding />} />
-            <Route path="/discountoffer" element={<DiscountOffer />} />
-            <Route path="/product" element={<Search />} />
-            <Route path="/product-view/:id" element={<ProductView />} />
-            <Route path="/UnControlledForm" element={<UnControlledForm />} />
-            <Route path="/ControlledForm" element={<ControlledForm />} />
-            <Route path="/FormikForm" element={<FormikForm />} />
-            <Route path="/ProductsFromAPI" element={<ProductsFromAPI />} />
-            <Route path="/Login" element={<Login />} />
-            
-            {/* TODO List Routes */}
-            <Route path="/TodoList" element={<TodoList />} />
-            <Route path="/add-todo" element={<TodoForm />} />
-            <Route path="/edit-todo/:id" element={<TodoForm />} />
-
-            <Route path="/*" element={<NotFound />} />
-          </Routes>
-        </Suspense>
+        <UserProvider>
+          <NavBar />
+          <Suspense fallback={<div>Loading...</div>}>
+            <Routes>
+              <Route path="/databinding" element={<Databinding />} />
+              <Route path="/discountoffer" element={<DiscountOffer />} />
+              <Route path="/product" element={<Search />} />
+              <Route path="/product-view/:id" element={<ProductView />} />
+              <Route path="/UnControlledForm" element={<UnControlledForm />} />
+              <Route path="/ControlledForm" element={<ControlledForm />} />
+              <Route path="/FormikForm" element={<FormikForm />} />
+              <Route path="/ProductsFromAPI" element={<ProductsFromAPI />} />
+              <Route path="/Login" element={<Login />} />
+              {/* TODO List Routes */}
+              <Route path="/TodoList" element={<TodoList />} />
+              <Route path="/add-todo" element={<TodoForm />} />
+              <Route path="/edit-todo/:id" element={<TodoForm />} />
+              <Route path="/*" element={<NotFound />} />
+            </Routes>
+          </Suspense>
+        </UserProvider>
       </BrowserRouter>
     </>
   );
