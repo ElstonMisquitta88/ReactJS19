@@ -8,7 +8,7 @@ import { UserContext } from "../context/UserProvider";
 function NavBar() {
 
 
-    const { currentUser } = useContext(UserContext);
+   const { currentUser } = useContext(UserContext);
 
     return (<>
         <nav className="navbar navbar-expand-lg bg-body-tertiary">
@@ -18,14 +18,11 @@ function NavBar() {
                     <span className="navbar-toggler-icon"></span>
                 </button>
                 <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
-                   Welcome, <b>{currentUser}</b>
+                    Welcome, <b>{currentUser?.userName || "Guest"}</b>
 
                     <div className="navbar-nav">
-                        {/* <NavLink to="/databinding" className="nav-link active" aria-current="page">Data Binding</NavLink> */}
                         <NavLink to="/discountoffer" className="nav-link">Discount Offer</NavLink>
                         <NavLink to="/product" className="nav-link">Search Product</NavLink>
-                        {/* <NavLink to="/UnControlledForm" className="nav-link">UnControlled Form</NavLink> */}
-                        {/* <NavLink to="/ControlledForm" className="nav-link">Controlled Form</NavLink> */}
                         <NavLink to="/FormikForm" className="nav-link">Formik Form</NavLink>
                         <NavLink to="/ProductsFromAPI" className="nav-link">Products From API</NavLink>
                         <NavLink to="/Login" className="nav-link">Login for Todo Page</NavLink>

@@ -1,10 +1,14 @@
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import * as Yup from "yup";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import authservice from "../services/auth.service";
+import { UserContext } from "../context/UserProvider";
 
 function login() {
+
+    //Accessing the UserContext to get the current user information and the function to update it.
+    const { currentUser, setCurrentUser } = useContext(UserContext);
 
     const initialLogin = {
         userName: "",
@@ -30,6 +34,10 @@ function login() {
             .then(response => {
                 setToken(response);
                 setmessage("Login Successfully");
+                // set the current user information in the context so that it can be accessed across the app
+                setCurrentUser({
+                    userName: frm.userName
+                });
                 redirectTodoPage();
             }
             )
@@ -40,6 +48,8 @@ function login() {
     const onlogout = () => {
         authservice.logout();
         setToken("");
+        // CLEAR USER
+        setCurrentUser(null);
         setmessage("Logged Out");
     }
 
